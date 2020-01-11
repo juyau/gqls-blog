@@ -5,7 +5,9 @@ const {
 
 const mongoose = require('mongoose')
 
-const DBUrl = 'mongodb+srv://Samuel:19820323@cluster0-qk7kt.mongodb.net/test?retryWrites=true&w=majority'
+const {
+    DBUrl
+} = require('./config')
 
 const userSchema = new mongoose.Schema({
     username: String,
