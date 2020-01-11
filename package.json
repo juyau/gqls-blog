@@ -4,7 +4,8 @@
   "description": "my blog server graphQL",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "index.js"
   },
   "author": "Samuel",
   "license": "ISC",
@@ -12,5 +13,8 @@
     "apollo-server": "^2.9.16",
     "graphql": "^14.5.8",
     "mongoose": "^5.8.7"
+  },
+  "engines": {
+    "node": "12.13.0"
   }
 }
