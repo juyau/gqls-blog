@@ -34,11 +34,13 @@ const postResolvers = {
 
     Mutation: {
         async createPost(parent, {
-            body
+            body,
+            title
         }, context) {
 
             const user = checkAuth(context)
             const newPost = new Post({
+                title,
                 body,
                 user: user.id,
                 username: user.username,

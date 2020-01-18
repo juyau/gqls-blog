@@ -11,7 +11,7 @@ const userTypeDefs = gql `
     type Mutation {
         register(user: registerInput!): User!
         login(username: String!, password: String!): User!
-        createPost(body: String!): Post!
+        createPost(body: String!, title: String!): Post!
         deletePost(postId: ID!): String!
         createComment(postId: ID!, body: String!): Post!
         deleteComment(postId: ID!, commentId: ID!): Post!
@@ -37,6 +37,7 @@ const userTypeDefs = gql `
     type Post {
         id: ID!
         username: String!
+        title: String
         body: String!
         createdAt: String
         comments:[Comment]!
