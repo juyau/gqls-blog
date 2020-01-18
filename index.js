@@ -1,30 +1,40 @@
 const {
     ApolloServer,
+    PubSub
 } = require('apollo-server')
 const mongoose = require('mongoose')
 
 const {
     DBUrl
 } = require('./config')
-const resolvers = require('./resolvers/userResolvers')
+const resolvers = require('./resolvers')
 const typeDefs = require('./typeDefs/users')
 
-mongoose.connect(DBUrl, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-
+const pubsub = new PubSub()
 
 const server = new ApolloServer({
     typeDefs,
-    resolvers
+    resolvers,
+    context: ({
+        req
+    }) => ({
+        req,
+        pubsub
+    })
 })
 
 
-server.listen({
-    port: process.env.PORT || 4000
-}).then(({
-    url
-}) => {
-    console.log(`🚀 Server ready at ${url}`);
-});
+mongoose
+    .connect(DBUrl, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }).then(() => {
+        console.log('MongoDB connected.')
+        return server.listen({
+            port: process.env.PORT || 4000
+        })
+    }).then(({
+        url
+    }) => {
+        console.log(`🚀 Server ready at ${url}`);
+    })
