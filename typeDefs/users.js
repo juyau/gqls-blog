@@ -37,7 +37,7 @@ const userTypeDefs = gql `
     type Post {
         id: ID!
         username: String!
-        title: String
+        title: String!
         body: String!
         createdAt: String
         comments:[Comment]!
