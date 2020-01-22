@@ -17,7 +17,7 @@ import { AuthProvider } from "./context/auth";
 import AuthRoute from "./utils/AuthRoute";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/",
+  uri: "https://gqls-blog.herokuapp.com/",
   request: operation => {
     const token = localStorage.getItem("jwtToken");
     operation.setContext({
